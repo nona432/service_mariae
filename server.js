@@ -1,4 +1,4 @@
-const express = require('express');
+Const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 <div class="container">
   <div class="logo-container">
     <!-- شعار الخدمة -->
-    <img src="https://i.ibb.co/213553663402/logo.png" onerror="this.src='https://via.placeholder.com/140/000000/d4af37?text=Mariage+DZ'" alt="Mariage DZ Logo">
+    <img src="https://i.ibb.co/XktGy42h/Whats-App-Image-2026-10-04-at-12-38-39-AM.jpg" onerror="this.src='https://via.placeholder.com/140/000000/d4af37?text=Mariage+DZ'" alt="Mariage DZ Logo">
   </div>
 
   <h2>💍 حجز خدمات الأعراس (Mariage DZ)</h2>
