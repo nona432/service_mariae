@@ -9,28 +9,42 @@ app.get('/', (req, res) => {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Service Mariage - خدمات الأعراس</title>
+  <title>Mariage DZ - Tous vos خدمات الأعراس</title>
   <style>
     * { box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; background-color: #f3f4f6; margin: 0; padding: 20px; direction: rtl; }
-    .container { max-width: 550px; margin: auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
-    h2 { text-align: center; color: #d97706; margin-top: 0; margin-bottom: 25px; font-size: 24px; }
+    body { font-family: system-ui, -apple-system, sans-serif; background-color: #0f0f11; color: #f3f4f6; margin: 0; padding: 20px; direction: rtl; }
+    .container { max-width: 550px; margin: auto; background: #18181c; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #d4af37; }
+    .logo-container { text-align: center; margin-bottom: 20px; }
+    .logo-container img { width: 140px; height: 140px; border-radius: 50%; border: 2px solid #d4af37; object-fit: cover; }
+    h2 { text-align: center; color: #d4af37; margin-top: 10px; margin-bottom: 25px; font-size: 22px; font-weight: bold; }
     .form-group { margin-bottom: 18px; }
-    label { display: block; margin-bottom: 6px; font-weight: 600; color: #374151; font-size: 15px; }
-    input, select { width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; outline: none; transition: border-color 0.2s; }
-    input:focus, select:focus { border-color: #d97706; }
-    button { width: 100%; background-color: #25d366; color: white; border: none; padding: 14px; font-size: 17px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 15px; transition: background-color 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    button:hover { background-color: #128c7e; }
+    label { display: block; margin-bottom: 6px; font-weight: 600; color: #e5e7eb; font-size: 15px; }
+    input, select { width: 100%; padding: 12px; background-color: #24242a; border: 1px solid #3f3f46; border-radius: 8px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.2s; }
+    input:focus, select:focus { border-color: #d4af37; }
+    input::placeholder { color: #9ca3af; }
+    button { width: 100%; background: linear-gradient(135deg, #25d366, #128c7e); color: white; border: none; padding: 14px; font-size: 17px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 15px; transition: transform 0.2s, opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    button:hover { opacity: 0.95; transform: translateY(-1px); }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h2>💍 حجز خدمات الأعراس (Service Mariage)</h2>
+  <div class="logo-container">
+    <!-- شعار الخدمة -->
+    <img src="https://i.ibb.co/213553663402/logo.png" onerror="this.src='https://via.placeholder.com/140/000000/d4af37?text=Mariage+DZ'" alt="Mariage DZ Logo">
+  </div>
+
+  <h2>💍 حجز خدمات الأعراس (Mariage DZ)</h2>
+
   <form id="marriageForm">
     <div class="form-group">
       <label>الاسم واللقب *</label>
       <input type="text" id="fullname" required placeholder="أدخل اسمك الكامل">
+    </div>
+
+    <div class="form-group">
+      <label>رقم الهاتف *</label>
+      <input type="tel" id="phone" required placeholder="05XX XX XX XX">
     </div>
 
     <div class="form-group">
@@ -87,23 +101,25 @@ app.get('/', (req, res) => {
 
 <script>
 function sendToWhatsApp() {
-  // الرقم الخاص بك: 0551716010 مقترن بالرمز الدولي للجزائر 213
-  const phoneNumber = "213551716010"; 
+  // الرقم الجديد الخاص بك: 0553663402
+  const phoneNumber = "213553663402"; 
 
   const fullname = document.getElementById('fullname').value.trim();
+  const phone = document.getElementById('phone').value.trim();
   const service = document.getElementById('service').value;
   const wilaya = document.getElementById('wilaya').value.trim();
   const location = document.getElementById('location').value.trim();
   const eventDate = document.getElementById('eventDate').value;
   const budget = document.getElementById('budget').value.trim();
 
-  if(!fullname || !service || !wilaya || !location || !eventDate) {
-    alert("يرجى ملء جميع الحقول المطلوبة (الاسم، الخدمة، الولاية، المكان، وتاريخ المناسبة)");
+  if(!fullname || !phone || !service || !wilaya || !location || !eventDate) {
+    alert("يرجى ملء جميع الحقول المطلوبة (الاسم، رقم الهاتف، الخدمة، الولاية، المكان، وتاريخ المناسبة)");
     return;
   }
 
   const message = \`مرحباً، أرغب في حجز خدمة عبر المنصة:%0A%0A\` +
     \`👤 *الاسم واللقب:* \${fullname}%0A\` +
+    \`📞 *رقم الهاتف:* \${phone}%0A\` +
     \`🛠️ *الخدمة المطلوبة:* \${service}%0A\` +
     \`📍 *الولاية:* \${wilaya}%0A\` +
     \`📌 *المكان بالتفصيل:* \${location}%0A\` +
