@@ -1,4 +1,4 @@
-Const express = require('express');
+const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,9 +14,12 @@ app.get('/', (req, res) => {
     * { box-sizing: border-box; }
     body { font-family: system-ui, -apple-system, sans-serif; background-color: #0f0f11; color: #f3f4f6; margin: 0; padding: 20px; direction: rtl; }
     .container { max-width: 550px; margin: auto; background: #18181c; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #d4af37; }
-    .logo-container { text-align: center; margin-bottom: 20px; }
-    .logo-container img { width: 140px; height: 140px; border-radius: 50%; border: 2px solid #d4af37; object-fit: cover; }
-    h2 { text-align: center; color: #d4af37; margin-top: 10px; margin-bottom: 25px; font-size: 22px; font-weight: bold; }
+    
+    .header-title { text-align: center; margin-bottom: 25px; }
+    .header-title h1 { color: #d4af37; font-size: 26px; margin: 0 0 5px 0; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    .header-title span { color: #e5e7eb; font-size: 18px; font-weight: 600; text-transform: uppercase; opacity: 0.8; }
+
+    h2 { text-align: center; color: #d4af37; margin-top: 10px; margin-bottom: 25px; font-size: 22px; font-weight: bold; border-top: 1px solid #3f3f46; padding-top: 15px; }
     .form-group { margin-bottom: 18px; }
     label { display: block; margin-bottom: 6px; font-weight: 600; color: #e5e7eb; font-size: 15px; }
     input, select { width: 100%; padding: 12px; background-color: #24242a; border: 1px solid #3f3f46; border-radius: 8px; color: #fff; font-size: 15px; outline: none; transition: border-color 0.2s; }
@@ -29,9 +32,9 @@ app.get('/', (req, res) => {
 <body>
 
 <div class="container">
-  <div class="logo-container">
-    <!-- شعار الخدمة -->
-    <img src="https://i.ibb.co/XktGy42h/Whats-App-Image-2026-10-04-at-12-38-39-AM.jpg" onerror="this.src='https://via.placeholder.com/140/000000/d4af37?text=Mariage+DZ'" alt="Mariage DZ Logo">
+  <div class="header-title">
+    <h1>Service Mariage DZ</h1>
+    <span>Sm dz</span>
   </div>
 
   <h2>💍 حجز خدمات الأعراس (Mariage DZ)</h2>
@@ -101,7 +104,6 @@ app.get('/', (req, res) => {
 
 <script>
 function sendToWhatsApp() {
-  // الرقم الجديد الخاص بك: 0553663402
   const phoneNumber = "213553663402"; 
 
   const fullname = document.getElementById('fullname').value.trim();
